@@ -31,6 +31,9 @@ contract RealEstateMarketplace is ERC721, Ownable, Pausable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
+    address internal cUsdTokenAddress =
+        0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
+
     struct Property {
         uint256 id;
         string location;
