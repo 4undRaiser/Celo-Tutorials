@@ -84,7 +84,6 @@ contract RealEstateMarketplace is ERC721, Ownable, Pausable {
         Property storage property = properties[tokenId];
 
         require(property.forSale, "Property is not for sale.");
-        require(msg.value >= property.price, "Insufficient funds.");
 
         require(
             IERC20Token(cUsdTokenAddress).transferFrom(
@@ -94,6 +93,7 @@ contract RealEstateMarketplace is ERC721, Ownable, Pausable {
             ),
             "Transfer failed."
         );
+        _transfer(property.owner, msg.sender, tokenId);
         property.owner = payable(msg.sender);
         property.forSale = false;
 
