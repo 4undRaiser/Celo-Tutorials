@@ -35,8 +35,9 @@ contract RealEstateMarketplace is ERC721, Ownable, Pausable {
         0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
 
     struct Property {
-        uint256 id;
+        string image;
         string location;
+        uint256 id;
         uint256 price;
         address payable owner;
         bool forSale;
@@ -60,6 +61,7 @@ contract RealEstateMarketplace is ERC721, Ownable, Pausable {
     }
 
     function registerProperty(
+        string memory image,
         string memory location,
         uint256 price
     ) public whenNotPaused {
@@ -69,8 +71,9 @@ contract RealEstateMarketplace is ERC721, Ownable, Pausable {
         _mint(msg.sender, tokenId);
 
         Property memory newProperty = Property(
-            tokenId,
+            image,
             location,
+            tokenId,
             price,
             payable(msg.sender),
             true
@@ -147,9 +150,11 @@ contract RealEstateMarketplace is ERC721, Ownable, Pausable {
         emit PropertyWithdrawn(tokenId);
     }
 
-    function getPropertyDetails(
-        uint256 tokenId
-    ) public view returns (Property memory) {
-        return properties[tokenId];
+    function getProperty(uint _Id) public view returns (Property memory) {
+        return properties[_Id];
+    }
+
+    function getAllProperties() public view returns (uint) {
+        return _tokenIds.current();
     }
 }
