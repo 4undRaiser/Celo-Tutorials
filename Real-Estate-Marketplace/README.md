@@ -1,4 +1,4 @@
-## Celo Realestate Marketplace.
+## Celo Real Estate Marketplace.
 
 [live demo](https://zingy-pony-603f0a.netlify.app/) of the dapp.
 
